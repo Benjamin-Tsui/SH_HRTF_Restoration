@@ -19,5 +19,19 @@ Spherical harmonic (SH) interpolation is a commonly used method to spatially up-
   * torch (PyTorch) - https://pytorch.org/
   * visdom - https://github.com/facebookresearch/visdom
 * (Used PyCharm as IDE for this project)
+* MATLAB (MATLAB 2019 and 2020 are both used in this project)
 
+## Training data
+Please download the training data from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing).
 
+## Training a model
+Please make sure all the python packages have been correctly installed and downloaded the training data from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)..
+1. Open `HRTF_Restoration_01\Python_scripts\Training\training_HRTF_baseline.py` (or `training_HRTF_proposed.py` or `training_HRTF_bigger.py`)
+2. Start visdom by running `python -m visdom.server` .
+3. Relocate folder path in line 31 (e.g. `file_loc = 'C:/Users/Admin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/' <- Training data folder `
+4. (If necessary) Change the number of epoch (line 341 in training_HRTF_baseline.py and training_HRTF_proposed.py, line 347 in training_HRTF_bigger.py), default 500.
+5. Change the model save name, recommend to end with `.pt` (line 560 in training_HRTF_baseline.py and training_HRTF_proposed.py, line 566 in training_HRTF_bigger.py)
+6. Run the script.
+(Please ignore the `couldn't retrieve source code for container of type` error warning if showed up.)
+
+## Evaluation
