@@ -124,5 +124,5 @@ model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
 
 
 
-## *Please feel free to email **bt712@york.ac.uk** if there is question about this project.*
+### *Please feel free to email **bt712@york.ac.uk** if there is question about this project.*
 
