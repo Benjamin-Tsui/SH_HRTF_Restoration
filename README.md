@@ -26,9 +26,9 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 
 ## Training a model
 **Please make sure all the python packages have been correctly installed and training data has been downloaded from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing).**
-1. Open `HRTF_Restoration_01\Python_scripts\Training\training_HRTF_baseline.py` (or `training_HRTF_proposed.py` or `training_HRTF_bigger.py`)
+1. Open `\HRTF_Restoration_01\Python_scripts\Training\training_HRTF_baseline.py` (or `\training_HRTF_proposed.py` or `\training_HRTF_bigger.py`)
 2. Start visdom by running `python -m visdom.server` .
-3. Update folder path in line 31 (e.g. `file_loc = 'C:/Users/Admin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'` <- Training data downloaded from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)).
+3. Update the folder path in line 31 (e.g. `file_loc = 'C:/Users/Admin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'` <- Training data downloaded from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)).
 4. (If necessary) Change the number of epoch (line 341 in `training_HRTF_baseline.py` and `training_HRTF_proposed.py`, line 347 in `training_HRTF_bigger.py`), default 500.
 5. Change the model save name, recommend to end with `.pt` (line 560 in training_HRTF_baseline.py and training_HRTF_proposed.py, line 566 in training_HRTF_bigger.py)
 6. Run the script.
@@ -37,12 +37,12 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 ## Evaluation
 ### Export results from trained model and save as .csv (Python)
 **1st order SH interpolated SADIE subject 18, SADIE subject 19, SADIE subject 20 and Bernschutz KU100 HRTFs will be processed with the trained models.**
-1. Open `HRTF_Restoration_01\Python_scripts\Validate\export_result_baseline.py` (or `export_result_proposed.py` or `export_result_bigger.py`)
-2. Update folder path in line 217 in `export_result_baseline.py` and `export_result_proposed.py`, line 223 in `export_result_bigger.py` (e.g. `folder_loc = 'C:/Users/Benjamin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'`
+1. Open `\HRTF_Restoration_01\Python_scripts\Validate\export_result_baseline.py` (or `\export_result_proposed.py` or `\export_result_bigger.py`)
+2. Update the folder path in line 217 in `export_result_baseline.py` and `export_result_proposed.py`, line 223 in `export_result_bigger.py` (e.g. `folder_loc = 'C:/Users/Admin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'`
  <- Training data downloaded from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)).
 3. Run the script.
-4. The output of the 4 HRTFs data will be save in 4 .csv files respectively.
-5. Please move those .csv files to your MATLAB directory (`HRTF_Restoration_01\Matlab_scripts\model_ouput` is recommanded). 
+4. The output of the 4 HRTFs data will be save in 4 .csv files respectively **(Renaming the files is not recommanded, as it may causes extra modifications in the MATLAB scripts that will be used for analysis)**.
+5. Please move those .csv files to your MATLAB directory (`\HRTF_Restoration_01\Matlab_scripts\model_ouput` is recommanded). 
 *Extra info:*
 *There are extra trained models provide in the `Models` folder, feel free to modify the `export_result_baseline.py` script and test them out.*
 *`training_HRTF_08++_15_sparse.pt` = Baseline model* ***(default)***
@@ -60,12 +60,28 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 2. *Update the nome of the saved model in line 209 (.pt is not needed, e.g. `model_name = 'training_HRTF_08++_16_sparse')*
 3. *Run the script.*
 
-*Please feel free to email `bt712@york.ac.uk` if there is any problem.*
+*Please feel free to email **bt712@york.ac.uk** if there is any problem.*
+
 ### Evaluate with the PSD model (MATLAB)
+1. Highlight all folders in `\HRTF_Restoration_01\Matlab_scripts`, right click `Add to Path` -> `Selected Folders and Subfolders`.
+2. In `\HRTF_Restoration_01\Matlab_scripts\Evaluation\PspecModel` open `\compare_PSD_SADIE.m` for the SADIE HRTFs data and `\compare_PSD_Bern.m` for the Bernschutz KU100 HRTFs data.
+**For `\compare_PSD_SADIE.m` with the SADIE subject 18, subject 19 and subject 20 HRTFs data**
+1. Update the folder path from line 19 to 22. 
+ - `hrtf_out` should be the .csv file exported from the Python sctipt.
+ - `hrtf_in`, `hrtf_tar` and `angle_matched` should be the in the training data folder from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)). Change the path before `/Time_aligned/` should work.
+2. Run the function in the command window:
+```
+subject = '18';  % or  '19' or  '20', the subject number in SADIE exported data
+model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
+[PSD_in_18_summary,PSD_out_18_summary, PSD_in_18, PSD_out_18] = compare_PSD_SADIE('18',model,1);
+ ```
+
+ 
+**For `\compare_PSD_Bern.m` with the Bernschutz KU100 HRTFs data**
 
 
 ### Evaluate with the localisation models (MATLAB)
-
+1. Highlight all folders in `HRTF_Restoration_01\Matlab_scripts`, right click `Add to Path` -> `Selected Folders and Subfolders`.
 
 
 
