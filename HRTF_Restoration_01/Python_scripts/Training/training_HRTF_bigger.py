@@ -324,7 +324,6 @@ class Net(nn.Module):
 
         x3 = torch.cat((x1, x2), dim=1)
         x = self.merge(x3)
-
         return x
 left_net = Net()
 right_net = Net()

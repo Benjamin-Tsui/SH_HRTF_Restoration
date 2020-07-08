@@ -214,7 +214,7 @@ right_net = trained_model['right_model']
 
 print(trained_model.keys())
 
-folder_loc = 'C:/Users/Benjamin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'
+folder_loc = 'C:/Users/.../Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'
 
 output_name = '_bern_out'
 file_loc = folder_loc + 'SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/'

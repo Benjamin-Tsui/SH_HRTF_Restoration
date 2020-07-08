@@ -2,10 +2,16 @@ function [PSD_in_summary,PSD_out_summary, PSD_in_angle, PSD_out_angle] = compare
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
+% plot flag:
+% 0 = no plot
+% 1 = 3d plot
+% 2 = heatmap
+% 3 = both 3d plot and heat map 
+
 % example:
-% [PSD_in_18_summary,PSD_out_18_summary, PSD_in_18, PSD_out_18] = compare_PSD_SADIE('18',model,1);
 % subject = '18' or  '19' or  '20';
-% model = 'training_HRTF_08++_03_sparse';
+% model = 'training_HRTF_08++_12_sparse';
+% [PSD_in_18_summary,PSD_out_18_summary, PSD_in_18, PSD_out_18] = compare_PSD_SADIE('18',model,1);
 
 %% csv results 
 % SADIE II hold outs
@@ -31,9 +37,11 @@ nfft = 512;
 in = cat(3,hrtf_dB_left_in,hrtf_dB_right_in);
 out = cat(3,hrtf_dB_left_out,hrtf_dB_right_out);
 target = cat(3,hrtf_dB_left_tar,hrtf_dB_right_tar); 
+
 in = permute(in,[2 1 3]);
 out = permute(out,[2 1 3]);
 target = permute(target,[2 1 3]);
+
 s = GetVoronoiPlotandSolidAng(angle_matched(:,1)', angle_matched(:,2)', 0);
 s_check = sum(sum(s)); % should be 1
 freq = 0 : fs/nfft : fs-(fs/nfft);

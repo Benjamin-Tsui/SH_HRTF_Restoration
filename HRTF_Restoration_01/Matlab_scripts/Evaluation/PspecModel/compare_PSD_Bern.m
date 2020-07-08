@@ -8,17 +8,16 @@ function [PSD_in_summary,PSD_out_summary, PSD_in_angle, PSD_out_angle] = compare
 % 2 = heatmap
 % 3 = both 3d plot and heat map 
 
-
 % example:
+% model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
 % [PSD_in_bern_summary,PSD_out_bern_summary, PSD_in_bern, PSD_out_bern] = compare_PSD_Bern(model,1);
-% model = 'training_HRTF_08++_03_sparse';
 
 %% csv results 
-hrtf_in = readmatrix('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_Tom_oct_3/SHed_hrtf_dB.txt');
 % change csv here 
-hrtf_out = readmatrix(['SH_reconstruct/model_ouput/' model '_tom_out.csv']);
-hrtf_tar = readmatrix('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_Tom_oct_3/hrtf_dB.txt');
-angle_matched = readmatrix('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_Tom_oct_3/angles.txt');
+hrtf_out = readmatrix(['SH_reconstruct/model_ouput/' model '_bern_out.csv']);
+hrtf_in = readmatrix('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/SHed_hrtf_dB.txt');
+hrtf_tar = readmatrix('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/hrtf_dB.txt');
+angle_matched = readmatrix('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/angles.txt');
 
 % hrtf_out = add_back_low_freq(hrtf_out, hrtf_in);
 

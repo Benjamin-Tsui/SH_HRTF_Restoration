@@ -1,4 +1,4 @@
-model = 'training_HRTF_08++_25_sparse';
+model = 'training_HRTF_08++_12_sparse';
 
 % SADIE II hold outs
 subject = '18';
@@ -7,11 +7,11 @@ hrtf_in = csvread(['ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_s
 hrtf_ref = csvread(['ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_sub_' subject '_oct_3/hrtf_dB.txt']);
 angle_matched = csvread(['ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_sub_' subject '_oct_3/angles.txt']);
 
-% % "Tom's" data
-% hrtf_out = csvread(['SH_reconstruct/model_ouput/' model '_tom_out.csv']);
-% hrtf_in = csvread('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_Tom_oct_3/SHed_hrtf_dB.txt');
-% hrtf_ref = csvread('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_Tom_oct_3/hrtf_dB.txt');
-% angle_matched = csvread('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_Tom_oct_3/angles.txt');
+% % Bernschutz data
+% hrtf_out = csvread(['SH_reconstruct/model_ouput/' model '_bern_out.csv']);
+% hrtf_in = csvread('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/SHed_hrtf_dB.txt');
+% hrtf_ref = csvread('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/hrtf_dB.txt');
+% angle_matched = csvread('ML_HRTF_Data/Time_aligned/SH_HRTFs_1st_order_512_sparse_in_bern_oct_3/angles.txt');
 
 
 azi_idx = find(angle_matched(:,2) == 0 & angle_matched(:,1) >= -90 & angle_matched(:,1) <= 90);

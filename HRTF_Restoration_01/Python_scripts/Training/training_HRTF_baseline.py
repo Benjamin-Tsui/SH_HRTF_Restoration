@@ -28,7 +28,7 @@ print(f"Time: {datetime.datetime.now()}")
 data_len = 55000   # set the number of data that is going to be used in training
 hold_size = 5000   # set the number of hold out data
 
-file_loc = 'C:/Users/Benjamin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'   # training data folder location
+file_loc = 'C:/Users/.../Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'   # training data folder location
 
 # import trining data
 print('Import data (x):')
