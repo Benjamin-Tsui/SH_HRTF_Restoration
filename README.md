@@ -1,6 +1,8 @@
 # SH_HRTF_Restoration
 > Low-order Spherical Harmonic HRTF Restorationusing a Neural Network Approach
 
+ *Correspondence: bt712@york.ac.uk (Ben)*
+
 Spherical harmonic (SH) interpolation is a commonly used method to spatially up-sample sparse Head Related Transfer Function (HRTF) datasets to denser HRTF datasets. However, depending on the number of sparse HRTF measurements and SH order, this process can introduce distortions in high frequency representation of the HRTFs. This paper investigates whether it is possible to restore some of the distorted high frequency HRTF components using machine learning algorithms. A combination of Convolutional Auto-Encoder (CAE) and Denoising Auto-Encoder (DAE) models is proposed to restore the high frequency distortion in SH interpolated HRTFs. Results are evaluated using both Perceptual Spectral Difference (PSD) and localisation prediction models, both of which demonstrate significant improvement after the restoration process.
 
 ## Hardware requirement
@@ -30,7 +32,7 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 2. Start visdom by running `python -m visdom.server` .
 3. Update the folder path in line 31 (e.g. `file_loc = 'C:/Users/Admin/Downloads/HRTF_Restoration_01/Training_data/Time_aligned/'` <- Training data downloaded from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)).
 4. (If necessary) Change the number of epoch (line 341 in `training_HRTF_baseline.py` and `training_HRTF_proposed.py`, line 347 in `training_HRTF_bigger.py`), default 500.
-5. Change the model save name, recommend to end with `.pt` (line 560 in training_HRTF_baseline.py and training_HRTF_proposed.py, line 566 in training_HRTF_bigger.py)
+5. Change the model save name, recommend to end with `.pt` (line 560 in `training_HRTF_baseline.py` and `training_HRTF_proposed.py`, line 566 in `training_HRTF_bigger.py`)
 6. Run the script.
 (Please ignore the `couldn't retrieve source code for container of type` error warning if showed up.)
 
@@ -67,6 +69,7 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 2. In `\HRTF_Restoration_01\Matlab_scripts\Evaluation\PspecModel` open `\compare_PSD_SADIE.m` for the SADIE HRTFs data and `\compare_PSD_Bern.m` for the Bernschutz KU100 HRTFs data.
 
 **For `\compare_PSD_SADIE.m` with the SADIE subject 18, subject 19 and subject 20 HRTFs data**
+
 3. Update the folder path from line 19 to 22. 
  - `hrtf_out` should be the .csv file exported from the Python sctipt.
  - `hrtf_in`, `hrtf_tar` and `angle_matched` should be the in the training data folder from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)). Change the path before `/Time_aligned/` should work.
@@ -76,13 +79,50 @@ subject = '18';  % or  '19' or  '20', the subject number in SADIE exported data
 model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
 [PSD_in_18_summary,PSD_out_18_summary, PSD_in_18, PSD_out_18] = compare_PSD_SADIE('18',model,1);
  ```
+*Note about plot flag:*
+* 0 = no plot*
+* 1 = 3d plot*
+* 2 = heatmap*
+* 3 = both 3d plot and heat map*
 
- 
 **For `\compare_PSD_Bern.m` with the Bernschutz KU100 HRTFs data**
 
+3. Update the folder path from line 17 to 20. 
+ - `hrtf_out` should be the .csv file exported from the Python sctipt.
+ - `hrtf_in`, `hrtf_tar` and `angle_matched` should be the in the training data folder from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)). Change the path before `/Time_aligned/` should work.
+4. Run the function in the command window:
+```
+model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
+[PSD_in_bern_summary,PSD_out_bern_summary, PSD_in_bern, PSD_out_bern] = compare_PSD_Bern(model,1);
+```
+*Note about plot flag:*
+* *0 = no plot*
+* *1 = 3d plot*
+* *2 = heatmap*
+* *3 = both 3d plot and heat map*
 
 ### Evaluate with the localisation models (MATLAB)
 1. Highlight all folders in `HRTF_Restoration_01\Matlab_scripts`, right click `Add to Path` -> `Selected Folders and Subfolders`.
+2. In `\HRTF_Restoration_01\Matlab_scripts\Evaluation\Localisation` open `\may_model_csv.m`.
+3. Update the name of the saved model in line 1 (e.g. `model = 'training_HRTF_08++_12_sparse';`)
+
+**For SADIE subject 18, subject 19 and subject 20 HRTFs data**
+
+4. Update the folder path from line 4 to 8. **(Make sure they are not commented out)**
+ - `subject` is the subject number in the SADIE database (18, 19 or 20 in this case)
+ - `hrtf_out` should be the .csv file exported from the Python sctipt.
+ - `hrtf_in`, `hrtf_tar` and `angle_matched` should be the in the training data folder from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)). Change the path before `/Time_aligned/` should work.
+5. Run the script
+
+**For the Bernschutz KU100 HRTFs data**
+
+4. Comment out line 4 to 8.
+5. Uncomment and update the folder path from line 10 to 14. **(Make sure they are not commented out)**
+ - `hrtf_out` should be the .csv file exported from the Python sctipt.
+ - `hrtf_in`, `hrtf_tar` and `angle_matched` should be the in the training data folder from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)). Change the path before `/Time_aligned/` should work.
+6. Run the script
 
 
+
+## *Please feel free to email **bt712@york.ac.uk** if there is question about this project.*
 
