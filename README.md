@@ -57,7 +57,7 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 
 ***Instructions:***
 1. *Update the model architecture in `class Net(nn.Module):` line 141 in `export_result_baseline.py`.*
-2. *Update the nome of the saved model in line 209 (.pt is not needed, e.g. `model_name = 'training_HRTF_08++_16_sparse')*
+2. *Update the nome of the saved model in line 209 (.pt is not needed, e.g. `model_name = 'training_HRTF_08++_16_sparse'`)*
 3. *Run the script.*
 
 *Please feel free to email **bt712@york.ac.uk** if there is any problem.*
@@ -65,11 +65,12 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 ### Evaluate with the PSD model (MATLAB)
 1. Highlight all folders in `\HRTF_Restoration_01\Matlab_scripts`, right click `Add to Path` -> `Selected Folders and Subfolders`.
 2. In `\HRTF_Restoration_01\Matlab_scripts\Evaluation\PspecModel` open `\compare_PSD_SADIE.m` for the SADIE HRTFs data and `\compare_PSD_Bern.m` for the Bernschutz KU100 HRTFs data.
+
 **For `\compare_PSD_SADIE.m` with the SADIE subject 18, subject 19 and subject 20 HRTFs data**
-1. Update the folder path from line 19 to 22. 
+3. Update the folder path from line 19 to 22. 
  - `hrtf_out` should be the .csv file exported from the Python sctipt.
  - `hrtf_in`, `hrtf_tar` and `angle_matched` should be the in the training data folder from [Google Drive](https://drive.google.com/drive/folders/1eZiNmvomlguggppe_GQdkP89mM-CMjhy?usp=sharing)). Change the path before `/Time_aligned/` should work.
-2. Run the function in the command window:
+4. Run the function in the command window:
 ```
 subject = '18';  % or  '19' or  '20', the subject number in SADIE exported data
 model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
