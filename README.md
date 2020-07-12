@@ -45,17 +45,18 @@ Please download the training data from [Google Drive](https://drive.google.com/d
 3. Run the script.
 4. The output of the 4 HRTFs data will be save in 4 .csv files respectively **(Renaming the files is not recommanded, as it may causes extra modifications in the MATLAB scripts that will be used for analysis)**.
 5. Please move those .csv files to your MATLAB directory (`\HRTF_Restoration_01\Matlab_scripts\model_ouput` is recommanded). 
-*Extra info:*
+
+***Extra info:***
 *There are extra trained models provide in the `Models` folder, feel free to modify the `export_result_baseline.py` script and test them out.*
-*`training_HRTF_08++_15_sparse.pt` = Baseline model* ***(default)***
-*`training_HRTF_08++_16_sparse.pt` = Baseline model with weight decay*
-*`training_HRTF_08++_13_sparse.pt` = Baseline model with drop out*
-*`training_HRTF_08++_12_sparse.pt` = Baseline model with weight decay drop out* ***(propsed model)***
-*`training_HRTF_08++_12_sparse.pt` = Baseline model with weight decay drop out and early stopped at 111 epoch*
-*`training_HRTF_08++_12_sparse.pt` = Baseline model with weight decay drop out and early stopped at 111 epoch*
-*`training_HRTF_08++_19_sparse.pt` = Baseline model with L1 loss*
-*`training_HRTF_08++_20_sparse.pt` = Baseline model with MSE loss*
-*`training_HRTF_08++_20_sparse.pt` = Baseline model without extra data from ARI, ITA and RIEC database*
+* *`training_HRTF_08++_15_sparse.pt` = Baseline model* ***(default)***
+* *`training_HRTF_08++_16_sparse.pt` = Baseline model with weight decay*
+* *`training_HRTF_08++_13_sparse.pt` = Baseline model with drop out*
+* *`training_HRTF_08++_12_sparse.pt` = Baseline model with weight decay drop out* ***(propsed model)***
+* *`training_HRTF_08++_12_sparse.pt` = Baseline model with weight decay drop out and early stopped at 111 epoch*
+* *`training_HRTF_08++_12_sparse.pt` = Baseline model with weight decay drop out and early stopped at 111 epoch*
+* *`training_HRTF_08++_19_sparse.pt` = Baseline model with L1 loss*
+* *`training_HRTF_08++_20_sparse.pt` = Baseline model with MSE loss*
+* *`training_HRTF_08++_20_sparse.pt` = Baseline model without extra data from ARI, ITA and RIEC database*
 
 ***Instructions:***
 1. *Update the model architecture in `class Net(nn.Module):` line 141 in `export_result_baseline.py`.*
@@ -80,10 +81,10 @@ model = 'training_HRTF_08++_12_sparse'; % the name of the saved model
 [PSD_in_18_summary,PSD_out_18_summary, PSD_in_18, PSD_out_18] = compare_PSD_SADIE('18',model,1);
  ```
 *Note about plot flag:*
-* 0 = no plot*
-* 1 = 3d plot*
-* 2 = heatmap*
-* 3 = both 3d plot and heat map*
+* *0 = no plot*
+* *1 = 3d plot*
+* *2 = heatmap*
+* *3 = both 3d plot and heat map*
 
 **For `\compare_PSD_Bern.m` with the Bernschutz KU100 HRTFs data**
 
